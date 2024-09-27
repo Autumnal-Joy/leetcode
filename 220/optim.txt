@@ -1,0 +1,1 @@
+自定义的window查找是o(n)的，可以用set代替，实现o(log n)

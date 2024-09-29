@@ -14,6 +14,6 @@ foreach(SUBDIR ${SUBDIRECTORIES})
     endif()
 endforeach()
 
-if(EXISTS test.cpp)
+if(EXISTS ${CMAKE_SOURCE_DIR}/test.cpp)
     add_executable(test test.cpp)
 endif()

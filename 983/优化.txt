@@ -1,0 +1,7 @@
+dp[i] 表示第 i 天到第 365 天的最小 cost
+
+初始化 dp[366] ~ dp[395] 为 0
+i = 365 -> 1
+当第 i 天非旅游日时，dp[i] = dp[i+1]
+当第 i 天是旅游日时，dp[i] = min(dp[i+1]+costs[0], dp[i+7]+costs[1], dp[i+30]+costs[2])
+dp[1] 为答案

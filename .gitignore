@@ -31,4 +31,8 @@
 *.out
 *.app
 
-test.cpp
+cmake-build*
+
+test.*
+
+.DS_Store

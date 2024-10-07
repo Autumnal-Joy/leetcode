@@ -1,0 +1,2 @@
+可以用 unordered_set<int> col, diag1, diag2 来存储列、主对角线、副对角线上是否有皇后
+主对角线上 x,y 之差相等，副对角线上 x,y 之和相等

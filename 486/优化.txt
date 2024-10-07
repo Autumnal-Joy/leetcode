@@ -1,0 +1,4 @@
+dp[i][j] 表示当数组剩下的部分为下标 i 到下标 j 时，先手玩家与后手玩家的最大分数差值
+
+dp[i][i] = nums[i]
+dp[i][j] = max(nums[i]−dp[i + 1][j], nums[j]−dp[i][j−1])

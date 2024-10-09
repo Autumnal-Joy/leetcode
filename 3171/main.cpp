@@ -14,8 +14,26 @@
 
 using namespace std;
 
-class Solution {
-    static auto bitCntAdd(vector<int> &bitCnt, int val) {
+class BitSum {
+    vector<int> bitCnt;
+    int sum = 0;
+
+public:
+    BitSum() : bitCnt(32) {}
+
+    auto val() {
+        if (sum == 0) {
+            for (int i = 0; i < 32; ++i) {
+                if (bitCnt[i]) {
+                    sum |= 1 << i;
+                }
+            }
+        }
+        return sum;
+    }
+
+    auto operator+=(int val) {
+        sum = 0;
         for (int i = 0; i < 32; ++i) {
             if (val & (1 << i)) {
                 ++bitCnt[i];
@@ -23,66 +41,39 @@ class Solution {
         }
     }
 
-    static auto bitCntDel(vector<int> &bitCnt, int val) {
+    auto operator-=(int val) {
+        sum = 0;
         for (int i = 0; i < 32; ++i) {
             if (val & (1 << i)) {
                 --bitCnt[i];
             }
         }
     }
+};
 
-    static auto bitCntValue(const vector<int> &bitCnt) {
-        int sum = 0;
-        for (int i = 0; i < 32; ++i) {
-            if (bitCnt[i]) {
-                sum |= 1 << i;
-            }
-        }
-        return sum;
-    }
-
-
+class Solution {
 public:
     int minimumDifference(vector<int> &nums, int k) {
-        if (nums.size() == 1) {
-            return std::abs(nums[0] - k);
-        }
+        auto bitSum = BitSum();
 
-        auto bitCnt = vector<int>(32);
-        bitCntAdd(bitCnt, nums[0]);
-        int left = 0, right = 1;
+        int left = 0, right = 0;
         int res = numeric_limits<int>::max();
 
         while (true) {
-            int sum = bitCntValue(bitCnt);
-
             if (left != right) {
-                res = std::min({res, std::abs(sum - k)});
+                res = std::min({res, std::abs(bitSum.val() - k)});
             }
-
-            if (sum < k) {
-                bitCntAdd(bitCnt, nums[right]);
-                ++right;
+            if (bitSum.val() < k) {
                 if (right == nums.size()) {
                     break;
                 }
+                bitSum += nums[right];
+                ++right;
             } else {
-                bitCntDel(bitCnt, nums[left]);
+                bitSum -= nums[left];
                 ++left;
             }
         }
-
-        int sum = bitCntValue(bitCnt);
-        res = std::min({res, std::abs(sum - k)});
-
-        while (left < right && sum > k) {
-            bitCntDel(bitCnt, nums[left]);
-            sum = bitCntValue(bitCnt);
-            res = std::min({res, std::abs(sum - k)});
-            ++left;
-        }
-
-
         return res;
     }
 };

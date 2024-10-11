@@ -6,6 +6,7 @@ class MyCircularQueue {
     vector<int> nums;
     // [front, rear)
     size_t front, rear, cnt;
+
 public:
     explicit MyCircularQueue(int k) : nums(k), front(0), rear(0), cnt(0) {}
 
@@ -28,21 +29,15 @@ public:
         return true;
     }
 
-    int Front() {
-        return isEmpty() ? -1 : nums[front];
-    }
+    int Front() { return isEmpty() ? -1 : nums[front]; }
 
     int Rear() {
         return isEmpty() ? -1 : nums[(rear + nums.size() - 1) % nums.size()];
     }
 
-    bool isEmpty() {
-        return cnt == 0;
-    }
+    bool isEmpty() { return cnt == 0; }
 
-    bool isFull() {
-        return cnt == nums.size();
-    }
+    bool isFull() { return cnt == nums.size(); }
 };
 
 /**
@@ -56,6 +51,4 @@ public:
  * bool param_6 = obj->isFull();
  */
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

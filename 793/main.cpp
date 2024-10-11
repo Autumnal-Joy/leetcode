@@ -10,35 +10,36 @@ using namespace std;
 
 class Solution {
 public:
-  int countZero(long long x) {
-    long long cnt = 0;
-    for (long long i = 5; i <= x; i *= 5) {
-      cnt += x / i;
+    int countZero(long long x) {
+        long long cnt = 0;
+        for (long long i = 5; i <= x; i *= 5) {
+            cnt += x / i;
+        }
+        return cnt;
     }
-    return cnt;
-  }
-  int preimageSizeFZF(int k) {
-    if (k == 0) {
-      return 5;
+
+    int preimageSizeFZF(int k) {
+        if (k == 0) {
+            return 5;
+        }
+        long long l = 0, r = 5 * (long long) k + 1;
+        while (l < r) {
+            long long m = l + (r - l) / 2;
+            auto cnt = countZero(m);
+            if (countZero(m) == k) {
+                return 5;
+            } else if (cnt < k) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
+        }
+        return 0;
     }
-    long long l = 0, r = 5 * (long long)k + 1;
-    while (l < r) {
-      long long m = l + (r - l) / 2;
-      auto cnt = countZero(m);
-      if (countZero(m) == k) {
-        return 5;
-      } else if (cnt < k) {
-        l = m + 1;
-      } else {
-        r = m;
-      }
-    }
-    return 0;
-  }
 };
 
 int main() {
-  auto s = Solution();
-  cout << s.preimageSizeFZF(3) << endl;
-  return 0;
+    auto s = Solution();
+    cout << s.preimageSizeFZF(3) << endl;
+    return 0;
 }

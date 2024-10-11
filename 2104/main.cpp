@@ -1,16 +1,17 @@
+#include <iostream>
 #include <limits>
 #include <stack>
-#include <iostream>
 #include <vector>
 
 using namespace std;
 
-
 class Solution {
 public:
     long long subArrayRanges(vector<int> &nums) {
-        auto leftMin = vector<int>(nums.size(), -1), rightMin = vector<int>(nums.size(), static_cast<int>(nums.size()));
-        auto leftMax = vector<int>(nums.size(), -1), rightMax = vector<int>(nums.size(), static_cast<int>(nums.size()));
+        auto leftMin = vector<int>(nums.size(), -1),
+             rightMin = vector<int>(nums.size(), static_cast<int>(nums.size()));
+        auto leftMax = vector<int>(nums.size(), -1),
+             rightMax = vector<int>(nums.size(), static_cast<int>(nums.size()));
 
         auto minStack = stack<int>(), maxStack = stack<int>();
         for (int i = 0; i < nums.size(); ++i) {

@@ -6,15 +6,17 @@ using namespace std;
 
 class Solution {
 public:
-    void
-    dfs(int target, const vector<int> &candidates, int begin, vector<bool> &visited, vector<int> &path,
-        vector<vector<int>> &res) {
+    void dfs(int target, const vector<int> &candidates, int begin,
+             vector<bool> &visited, vector<int> &path, vector<vector<int>> &res) {
         if (target == 0) {
             res.push_back(path);
         }
         int last = -1;
         for (int i = begin; i < candidates.size(); ++i) {
-            if (visited[i] || candidates[i] > target || (last != -1 && candidates[last] == candidates[i])) { continue; }
+            if (visited[i] || candidates[i] > target ||
+                (last != -1 && candidates[last] == candidates[i])) {
+                continue;
+            }
             path.push_back(candidates[i]);
             last = i;
             visited[i] = true;

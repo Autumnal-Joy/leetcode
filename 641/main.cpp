@@ -6,6 +6,7 @@ class MyCircularDeque {
     vector<int> nums;
     // [front, rear)
     size_t front, rear, cnt;
+
 public:
     explicit MyCircularDeque(int k) : nums(k), front(0), rear(0), cnt(0) {}
 
@@ -47,21 +48,15 @@ public:
         return true;
     }
 
-    int getFront() const {
-        return isEmpty() ? -1 : nums[front];
-    }
+    int getFront() const { return isEmpty() ? -1 : nums[front]; }
 
     int getRear() const {
         return isEmpty() ? -1 : nums[(rear + nums.size() - 1) % nums.size()];
     }
 
-    bool isEmpty() const {
-        return cnt == 0;
-    }
+    bool isEmpty() const { return cnt == 0; }
 
-    bool isFull() const {
-        return cnt == nums.size();
-    }
+    bool isFull() const { return cnt == nums.size(); }
 };
 
 /**
@@ -77,6 +72,4 @@ public:
  * bool param_8 = obj->isFull();
  */
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

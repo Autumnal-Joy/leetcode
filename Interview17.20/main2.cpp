@@ -7,14 +7,15 @@
 #include <queue>
 #include <stack>
 #include <string>
-#include <unordered_set>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
 
 class MedianFinder {
     vector<int> nums;
+
 public:
     /** initialize your data structure here. */
     MedianFinder() {}
@@ -41,6 +42,4 @@ public:
  * double param_2 = obj->findMedian();
  */
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

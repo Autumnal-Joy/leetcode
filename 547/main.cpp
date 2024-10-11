@@ -7,6 +7,7 @@ class UnionFind {
     vector<int> parent;
     vector<int> rank;
     int cnt;
+
 public:
     explicit UnionFind(int n) : parent(n), rank(n, 1), cnt(n) {
         iota(parent.begin(), parent.end(), 0);
@@ -36,9 +37,7 @@ public:
         --cnt;
     }
 
-    int count() const {
-        return cnt;
-    }
+    int count() const { return cnt; }
 };
 
 class Solution {
@@ -57,6 +56,4 @@ public:
     }
 };
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

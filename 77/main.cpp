@@ -9,7 +9,8 @@ using namespace std;
 
 class Solution {
 public:
-    void dfs(int cnt, int begin, int end, vector<vector<int>>& res, vector<int>& path) {
+    void dfs(int cnt, int begin, int end, vector<vector<int>> &res,
+             vector<int> &path) {
         if (cnt == 0) {
             res.push_back(path);
             return;
@@ -20,6 +21,7 @@ public:
             path.pop_back();
         }
     }
+
     vector<vector<int>> combine(int n, int k) {
         auto res = vector<vector<int>>();
         auto path = vector<int>();
@@ -28,6 +30,4 @@ public:
     }
 };
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

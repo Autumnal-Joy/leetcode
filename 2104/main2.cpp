@@ -9,7 +9,8 @@ public:
         int n = static_cast<int>(nums.size());
         long long ret = 0;
         for (int i = 0; i < n; ++i) {
-            int minVal = numeric_limits<int>::max(), maxVal = numeric_limits<int>::min();
+            int minVal = numeric_limits<int>::max(),
+                maxVal = numeric_limits<int>::min();
             for (int j = i; j < n; ++j) {
                 minVal = std::min(minVal, nums[j]);
                 maxVal = std::max(maxVal, nums[j]);

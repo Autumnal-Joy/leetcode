@@ -9,19 +9,19 @@ using namespace std;
 // 因此 a = 2n! / 2^n = (2n-1)!! * n!
 class Solution {
 public:
-  int countOrders(int n) {
-    long long result = 1;
-    long long mod = 1e9 + 7;
+    int countOrders(int n) {
+        long long result = 1;
+        long long mod = 1e9 + 7;
 
-    for (int i = 1; i <= n; i++) {
-      result = ((result * i) % mod) * (2 * i - 1) % mod;
+        for (int i = 1; i <= n; i++) {
+            result = ((result * i) % mod) * (2 * i - 1) % mod;
+        }
+
+        return static_cast<int>(result);
     }
-
-    return static_cast<int>(result);
-  }
 };
 
 int main() {
-  auto s = Solution();
-  return 0;
+    auto s = Solution();
+    return 0;
 }

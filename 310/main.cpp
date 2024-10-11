@@ -5,15 +5,16 @@
 
 using namespace std;
 
-// 当 n > 2 时，如果以叶子结点为根，则存在一条最长的到另一个叶子的路径为树的高度，大于以叶子结点相邻的结点为根的树的高度，因此叶子结点不能为根
+// 当 n > 2
+// 时，如果以叶子结点为根，则存在一条最长的到另一个叶子的路径为树的高度，大于以叶子结点相邻的结点为根的树的高度，因此叶子结点不能为根
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int>> &edges) {
-        if(n==1){
+        if (n == 1) {
             return {0};
         }
-        if(n==2){
-            return {0,1};
+        if (n == 2) {
+            return {0, 1};
         }
 
         auto adj = vector<unordered_set<int>>(n);

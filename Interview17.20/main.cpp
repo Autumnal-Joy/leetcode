@@ -5,6 +5,7 @@ using namespace std;
 class MedianFinder {
     multiset<int> nums;
     multiset<int>::iterator left, right;
+
 public:
     /** initialize your data structure here. */
     MedianFinder() {}
@@ -34,9 +35,7 @@ public:
         }
     }
 
-    double findMedian() {
-        return (*left + *right) / 2.0;
-    }
+    double findMedian() { return (*left + *right) / 2.0; }
 };
 
 /**
@@ -46,6 +45,4 @@ public:
  * double param_2 = obj->findMedian();
  */
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

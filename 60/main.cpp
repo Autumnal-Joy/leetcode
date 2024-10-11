@@ -18,7 +18,7 @@ public:
 
         string res;
         string nums = "123456789";
-        for(int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i) {
             int idx = (k - 1) / factorial[n - 1 - i];
             res.push_back(nums[idx]);
             nums.erase(nums.begin() + idx);
@@ -28,6 +28,4 @@ public:
     }
 };
 
-int main() {
-    return 0;
-}
+int main() { return 0; }

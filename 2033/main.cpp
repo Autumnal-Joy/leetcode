@@ -5,7 +5,8 @@ using namespace std;
 
 class Solution {
     static auto legal(const vector<int> &array, int x) {
-        if (x == 1) return true;
+        if (x == 1)
+            return true;
         int remain = array[0] % x;
         for (int i = 1; i < array.size(); ++i) {
             if (array[i] % x != remain) {
@@ -23,7 +24,9 @@ public:
             std::copy(v.begin(), v.end(), std::back_inserter(array));
         }
 
-        if (!legal(array, x)) { return -1; }
+        if (!legal(array, x)) {
+            return -1;
+        }
 
         std::sort(array.begin(), array.end());
 
@@ -40,7 +43,4 @@ public:
     }
 };
 
-int main() {
-
-    return 0;
-}
+int main() { return 0; }

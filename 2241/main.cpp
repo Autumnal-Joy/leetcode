@@ -9,6 +9,7 @@ class ATM {
     long long m100 = 0;
     long long m200 = 0;
     long long m500 = 0;
+
 public:
     ATM() = default;
 
@@ -21,15 +22,20 @@ public:
     }
 
     vector<int> withdraw(int amount) {
-        int cnt500 = static_cast<int>(std::min({static_cast<long long>(amount / 500), m500}));
+        int cnt500 = static_cast<int>(
+                std::min({static_cast<long long>(amount / 500), m500}));
         amount -= cnt500 * 500;
-        int cnt200 = static_cast<int>(std::min({static_cast<long long>(amount / 200), m200}));
+        int cnt200 = static_cast<int>(
+                std::min({static_cast<long long>(amount / 200), m200}));
         amount -= cnt200 * 200;
-        int cnt100 = static_cast<int>(std::min({static_cast<long long>(amount / 100), m100}));
+        int cnt100 = static_cast<int>(
+                std::min({static_cast<long long>(amount / 100), m100}));
         amount -= cnt100 * 100;
-        int cnt50 = static_cast<int>(std::min({static_cast<long long>(amount / 50), m50}));
+        int cnt50 =
+                static_cast<int>(std::min({static_cast<long long>(amount / 50), m50}));
         amount -= cnt50 * 50;
-        int cnt20 = static_cast<int>(std::min({static_cast<long long>(amount / 20), m20}));
+        int cnt20 =
+                static_cast<int>(std::min({static_cast<long long>(amount / 20), m20}));
         amount -= cnt20 * 20;
 
         if (amount == 0) {
@@ -52,7 +58,4 @@ public:
  * vector<int> param_2 = obj->withdraw(amount);
  */
 
-int main() {
-
-    return 0;
-}
+int main() { return 0; }

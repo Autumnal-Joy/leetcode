@@ -8,12 +8,12 @@ using namespace std;
 
 class Solution {
 public:
-  int mechanicalAccumulator(int target) {
-    return target == 1 ? 1 : mechanicalAccumulator(target - 1) + target;
-  }
+    int mechanicalAccumulator(int target) {
+        return target == 1 ? 1 : mechanicalAccumulator(target - 1) + target;
+    }
 };
 
 int main() {
-  auto s = Solution();
-  return 0;
+    auto s = Solution();
+    return 0;
 }

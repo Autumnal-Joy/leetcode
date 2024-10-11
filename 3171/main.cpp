@@ -78,7 +78,6 @@ public:
     }
 };
 
-
 int main() {
     Solution s;
     auto nums = vector<int>{42, 49, 95, 76, 66};

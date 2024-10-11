@@ -7,9 +7,7 @@ class BIT {
     int n;
     vector<int> tree;
 
-    static int lowbit(int x) {
-        return x & -x;
-    }
+    static int lowbit(int x) { return x & -x; }
 
 public:
     explicit BIT(int n) : n(n), tree(n + 2) {}
@@ -30,9 +28,7 @@ public:
         return res;
     }
 
-    int rangeSum(int i, int j) {
-        return sum(j) - sum(i - 1);
-    }
+    int rangeSum(int i, int j) { return sum(j) - sum(i - 1); }
 };
 
 class CustomStack {
@@ -40,6 +36,7 @@ class CustomStack {
     BIT bit;
 
     int size = 0;
+
 public:
     explicit CustomStack(int maxSize) : maxSize(maxSize), bit(maxSize) {}
 
@@ -71,7 +68,6 @@ public:
         bit.add(std::min({k, size}) + 1, -val);
     }
 };
-
 
 int main() {
     auto *obj = new CustomStack(3);

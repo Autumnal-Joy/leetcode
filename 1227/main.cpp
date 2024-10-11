@@ -20,10 +20,10 @@ using namespace std;
 
 class Solution {
 public:
-  double nthPersonGetsNthSeat(int n) { return n > 1 ? 0.5 : 1; }
+    double nthPersonGetsNthSeat(int n) { return n > 1 ? 0.5 : 1; }
 };
 
 int main() {
-  auto s = Solution();
-  return 0;
+    auto s = Solution();
+    return 0;
 }

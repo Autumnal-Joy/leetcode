@@ -10,7 +10,7 @@ foreach(SUBDIR ${SUBDIRECTORIES})
     # 检查是否存在 main.cpp 文件
     if(EXISTS ${CMAKE_SOURCE_DIR}/${SUBDIR}/main.cpp)
         # 设置可执行文件的名称为子目录名称
-        add_executable(${SUBDIR}_exec ${CMAKE_SOURCE_DIR}/${SUBDIR}/main.cpp)
+        add_executable(${SUBDIR} ${CMAKE_SOURCE_DIR}/${SUBDIR}/main.cpp)
     endif()
 endforeach()
 

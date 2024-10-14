@@ -16,7 +16,7 @@ public:
             if (p == 2) {
                 res.push_back(-1);
             } else {
-                int mask =(~p & -~p) >> 1;
+                int mask = (~p & -~p) >> 1;
                 res.push_back(p ^ mask);
             }
         }

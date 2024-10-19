@@ -1,0 +1,7 @@
+1. 前后缀数组
+preMax[i] 记录 [0,i] 的最大值
+sufMax[i] 记录 [i,n-1] 的最大值
+min{preMax[i], sufMax[i]} - height[i] 就是 i 的水量
+
+2. 相向双指针
+谁高度低移动谁，实时求前后缀数组某一个时刻的值

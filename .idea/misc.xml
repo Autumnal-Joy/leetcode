@@ -6,7 +6,7 @@
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
-    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="RiderCppLiveTemplatesSettings" type="string" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Text/@EntryValue" value="class BIT {&#10;    int n;&#10;    std::vector&lt;int&gt; tree;&#10;&#10;    static int lowbit(int x) { return x &amp; -x; }&#10;&#10;public:&#10;    explicit BIT(int n) : n(n), tree(n + 1) {}&#10;&#10;    void add(int i, int delta) {&#10;        while (i &lt;= n) {&#10;            tree[i] += delta;&#10;            i += lowbit(i);&#10;        }&#10;    }&#10;&#10;    int sum(int i) {&#10;        int res = 0;&#10;        while (i &gt; 0) {&#10;            res += tree[i];&#10;            i -= lowbit(i);&#10;        }&#10;        return res;&#10;    }&#10;&#10;    int rangeSum(int i, int j) { return sum(j) - sum(i - 1); }&#10;};" type="string" />
@@ -123,6 +123,29 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=B00B630CDFF6594A940959346BAC420E/Type/@EntryValue" value="InPlaceApplicableForClassDeclaration" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Shortcut/@EntryValue" value="vi" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Reformat/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/@KeyIndexDefined" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Description/@EntryValue" value="vector&lt;int&gt;" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Text/@EntryValue" value="vector&lt;int&gt;($END$)" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/Order/@EntryValue" value="0" type="long" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/@KeyIndexDefined" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Applicability/=Live/@EntryIndexRemoved" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Text/@EntryValue" value="vector&lt;unordered_set&lt;int&gt;&gt;($END$)" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Shortcut/@EntryValue" value="vusi" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/@KeyIndexDefined" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Applicability/=Live/@EntryIndexRemoved" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Description/@EntryValue" value="vector&lt;int&gt;" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Reformat/@EntryValue" value="true" type="bool" />
   </component>
   <component name="Black">
     <option name="sdkName" value="Python 3.13 (leetcode)" />

@@ -4,10 +4,8 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="RiderCppLiveTemplatesSettings" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Text/@EntryValue" value="class BIT {&#10;    int n;&#10;    std::vector&lt;int&gt; tree;&#10;&#10;    static int lowbit(int x) { return x &amp; -x; }&#10;&#10;public:&#10;    explicit BIT(int n) : n(n), tree(n + 1) {}&#10;&#10;    void add(int i, int delta) {&#10;        while (i &lt;= n) {&#10;            tree[i] += delta;&#10;            i += lowbit(i);&#10;        }&#10;    }&#10;&#10;    int sum(int i) {&#10;        int res = 0;&#10;        while (i &gt; 0) {&#10;            res += tree[i];&#10;            i -= lowbit(i);&#10;        }&#10;        return res;&#10;    }&#10;&#10;    int rangeSum(int i, int j) { return sum(j) - sum(i - 1); }&#10;};" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
@@ -15,11 +13,8 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Shortcut/@EntryValue" value="BIT" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Description/@EntryValue" value="树状数组" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Applicability/=Live/@EntryIndexRemoved" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Description/@EntryValue" value="并查集" type="string" />
@@ -29,25 +24,21 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Text/@EntryValue" value="class UnionFind {&#10;    std::vector&lt;int&gt; parent;&#10;    std::vector&lt;int&gt; rank;&#10;&#10;public:&#10;    UnionFind(int n) : parent(n), rank(n, 1) {&#10;        iota(parent.begin(), parent.end(), 0);&#10;    }&#10;    int find(int val) {&#10;        while (val != parent[val]) {&#10;            parent[val] = parent[parent[val]];&#10;            val = parent[val];&#10;        }&#10;        return val;&#10;    }&#10;    void unite(int x, int y) {&#10;        auto p1 = find(x), p2 = find(y);&#10;        if (p1 == p2) {&#10;            return;&#10;        }&#10;        if (rank[p1] &lt; rank[p2]) {&#10;            parent[p1] = p2;&#10;        } else if (rank[p1] &gt; rank[p2]) {&#10;            parent[p2] = p1;&#10;        } else {&#10;            parent[p1] = p2;&#10;            ++rank[p2];&#10;        }&#10;    }&#10;    void separate(int x) {&#10;        parent[x] = x;&#10;    }&#10;};" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Reformat/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Shortcut/@EntryValue" value="max" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Text/@EntryValue" value="numeric_limits&lt;$TYPE$&gt;::max()$END$" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Scope/=B00B630CDFF6594A940959346BAC420E/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Description/@EntryValue" value="最大值" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=142D537B0D0EB94FB500BE21336917F8/Scope/=B00B630CDFF6594A940959346BAC420E/Type/@EntryValue" value="InPlaceApplicableForClassDeclaration" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Scope/=B00B630CDFF6594A940959346BAC420E/Type/@EntryValue" value="InPlaceApplicableForClassDeclaration" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=83663CA6F7B58F49960D740E4313C60E/Scope/=B00B630CDFF6594A940959346BAC420E/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Description/@EntryValue" value="最小值" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
@@ -55,19 +46,14 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Text/@EntryValue" value="numeric_limits&lt;&gt;::min()" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=2E3B81DBD1A12B41BFA0872D52419DF2/Shortcut/@EntryValue" value="min" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=1D7E183083ACD74F9465597ABCCEE718/Applicability/=Live/@EntryIndexRemoved" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Text/@EntryValue" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Description/@EntryValue" value="最大值" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Shortcut/@EntryValue" value="max" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=8C2621C5456AB5459D249A4D495CEBB0/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
@@ -82,7 +68,6 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/Text/@EntryValue" value="numeric_limits&lt;$TYPE$&gt;::min()$END$" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/Field/=TYPE/Order/@EntryValue" value="0" type="long" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/Field/=TYPE/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Field/=TYPE/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=B2418DF8968E354697AAF0860503E591/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F927F4247711FB4A960F70EF3A44D082/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
@@ -91,21 +76,15 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=215E7054AB495A4F9AFB50ABDD50E987/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Field/=TYPE/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Applicability/=Live/@EntryIndexRemoved" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Text/@EntryValue" value="deque&lt;int&gt;" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=FB2B1B3627C3074699DE05129AC80274/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Description/@EntryValue" value="最小值" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Field/=TYPE/Order/@EntryValue" value="0" type="long" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=FB2B1B3627C3074699DE05129AC80274/Type/@EntryValue" value="InCppCompoundStatement" type="string" />
@@ -113,49 +92,38 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Shortcut/@EntryValue" value="quickpow" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=31C217A7D8857C4C88373F4A3E676A10/Shortcut/@EntryValue" value="dqi" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Text/@EntryValue" value="long long quickPow(long long x, long long n) {&#10;    long long res = 1;&#10;    while (n) {&#10;        if (n &amp; 1) {&#10;            res *= x;&#10;        }&#10;        x *= x;&#10;        n &gt;&gt;= 1;&#10;    }&#10;    return res;&#10;}" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=B00B630CDFF6594A940959346BAC420E/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=2BA3EB57D316654FB23BF757F7C2AC89/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=D6711EC08758964D8C84C2B3119B1B6B/Type/@EntryValue" value="InCppGlobalNamespace" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=49623BCB5944234AAD0552A2908C3C83/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=D6711EC08758964D8C84C2B3119B1B6B/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=49623BCB5944234AAD0552A2908C3C83/Type/@EntryValue" value="InCppNamespace" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=2BA3EB57D316654FB23BF757F7C2AC89/Type/@EntryValue" value="InCppClass" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=B00B630CDFF6594A940959346BAC420E/Type/@EntryValue" value="InPlaceApplicableForClassDeclaration" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=26E7B93EAA976F4B8D9956E7D4A59FDD/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Shortcut/@EntryValue" value="vi" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Description/@EntryValue" value="vector&lt;int&gt;" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Text/@EntryValue" value="vector&lt;int&gt;($END$)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/Order/@EntryValue" value="0" type="long" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Field/=TYPE/@KeyIndexDefined" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=5324D8DFB37802439B9891FD519FD304/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Text/@EntryValue" value="vector&lt;unordered_set&lt;int&gt;&gt;($END$)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Shortcut/@EntryValue" value="vusi" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/@KeyIndexDefined" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Description/@EntryValue" value="vector&lt;int&gt;" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=FE0A5B52BEDE4F429A6E891804BA9AD9/Reformat/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Field/=TYPE/Order/@EntryValue" value="0" type="long" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Field/=TYPE/Expression/@EntryValue" value="guessExpectedType(&quot;&quot;)" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Text/@EntryValue" value="vector&lt;$END$&gt;" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Field/=TYPE/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Shortcut/@EntryValue" value="v" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Description/@EntryValue" value="vector" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=340C0E3B9877FA49988E549A06E014FB/Reformat/@EntryValue" value="true" type="bool" />
@@ -163,18 +131,14 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Text/@EntryValue" value="set&lt;$END$&gt;" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue" value="InCppFile" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/Shortcut/@EntryValue" value="s" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Description/@EntryValue" value="set" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0B4B33F5B67108469D185F23823C3511/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Reformat/@EntryValue" value="true" type="bool" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/Shortcut/@EntryValue" value="s" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F952656CB11587438FEDC00CEEC1C5A0/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
@@ -185,14 +149,11 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/Shortcut/@EntryValue" value="us" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=508B702EC9187A4E99A3CFBEA7842B3F/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Text/@EntryValue" value="map&lt;$END$&gt;" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Description/@EntryValue" value="map" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/@KeyIndexDefined" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9D9449FF777EBA4880263D7AE96920A0/Shortcut/@EntryValue" value="m" type="string" />
@@ -200,14 +161,12 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue" value="InPlaceAllowingCppExpression" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Shortcut/@EntryValue" value="um" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/@KeyIndexDefined" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Text/@EntryValue" value="unordered_map&lt;$END$&gt;" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=9434FD22D492A548BC371153787542FF/Description/@EntryValue" value="unordered_map" type="string" />
-    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Applicability/=Live/@EntryIndexRemoved" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Description/@EntryValue" value="字典树" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Scope/=B00B630CDFF6594A940959346BAC420E/@KeyIndexDefined" value="true" type="bool" />
@@ -217,6 +176,23 @@
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Reformat/@EntryValue" value="true" type="bool" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Scope/=B00B630CDFF6594A940959346BAC420E/Type/@EntryValue" value="InPlaceApplicableForClassDeclaration" type="string" />
     <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=0089303B2F2FCA4AAEE9C8977093C58C/Shortcut/@EntryValue" value="Trie" type="string" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/IsBlessed/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Applicability/=Live/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/ShortenQualifiedReferences/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Description/@EntryValue" value="滑动窗口算法" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Scope/=FB2B1B3627C3074699DE05129AC80274/Type/@EntryValue" value="InCppCompoundStatement" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Field/=EXPR/Expression/@EntryValue" value="constant(&quot;true&quot;)" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Applicability/=Surround/@EntryIndexedValue" value="false" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Applicability/=Live/@EntryIndexRemoved" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Text/@EntryValue" value="auto left = 0, right = 0;&#10;while (right &lt; n) {&#10;    /*&#10;     * expand window&#10;     */&#10;    ++right;&#10;    while (/* window is valid */) {&#10;        /*&#10;         * shrink window&#10;         */&#10;        ++left;&#10;    }&#10;}" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Applicability/=Surround/@EntryIndexRemoved" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Field/=EXPR/Order/@EntryValue" value="0" type="long" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Field/=EXPR/@KeyIndexDefined" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Shortcut/@EntryValue" value="slide" type="string" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Scope/=FB2B1B3627C3074699DE05129AC80274/@KeyIndexDefined" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/Reformat/@EntryValue" value="true" type="bool" />
+    <option name="/Default/PatternsAndTemplates/LiveTemplates/Template/=F0E8A276D93E0947AEB38906C15E1DE5/@KeyIndexDefined" value="true" type="bool" />
   </component>
   <component name="Black">
     <option name="sdkName" value="Python 3.13 (leetcode)" />

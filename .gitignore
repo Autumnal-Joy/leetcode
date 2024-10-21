@@ -33,6 +33,6 @@
 
 cmake-build*
 
-test.*
+test*
 
 .DS_Store

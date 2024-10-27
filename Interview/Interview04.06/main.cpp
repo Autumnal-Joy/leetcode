@@ -48,17 +48,18 @@ TreeNode *buildTree(const vector<int> &nodes) {
     while (!q.empty() && i < nodes.size()) {
         auto node = q.front();
         q.pop();
-        if (nodes[i++] != -1) {
+        if (i < nodes.size() && nodes[i++] != -1) {
             node->left = new TreeNode(nodes[i - 1]);
             q.push(node->left);
         }
-        if (nodes[i++] != -1) {
+        if (i < nodes.size() && nodes[i++] != -1) {
             node->right = new TreeNode(nodes[i - 1]);
             q.push(node->right);
         }
     }
     return root;
 }
+
 
 int main() {
     auto root = buildTree({5, 3, 6, 2, 4, -1, -1, 1});

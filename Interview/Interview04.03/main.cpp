@@ -18,40 +18,38 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
-    vector<vector<int>> res;
-    vector<int> path;
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    explicit ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
-    void dfs(deque<TreeNode *> &dq) {
-        if (dq.empty()) {
-            res.push_back(path);
-        }
-        auto n = static_cast<int>(dq.size());
-        for (int i = 0; i < n; ++i) {
+class Solution {
+public:
+    vector<ListNode *> listOfDepth(TreeNode *tree) {
+        auto res = vector<ListNode *>();
+        auto dq = deque({tree});
+        while (!dq.empty()) {
+            const auto size = dq.size();
             auto front = dq.front();
             dq.pop_front();
+            res.push_back(new ListNode(front->val));
+            if (front->left) { dq.push_back(front->left); }
+            if (front->right) { dq.push_back(front->right); }
 
-            path.push_back(front->val);
-            if (front->left) dq.push_back(front->left);
-            if (front->right) dq.push_back(front->right);
+            auto head = res.back();
 
-            dfs(dq);
-
-            if (front->right) dq.pop_back();
-            if (front->left) dq.pop_back();
-            path.pop_back();
-
-            dq.push_back(front);
+            for (int i = 1; i < size; ++i) {
+                front = dq.front();
+                dq.pop_front();
+                head->next = new ListNode(front->val);
+                head = head->next;
+                if (front->left) { dq.push_back(front->left); }
+                if (front->right) { dq.push_back(front->right); }
+            }
         }
-    }
-
-public:
-    vector<vector<int>> BSTSequences(TreeNode *root) {
-        if (!root) {
-            return {{}};
-        }
-        auto dq = deque({root});
-        dfs(dq);
         return res;
     }
 };
@@ -78,7 +76,7 @@ TreeNode *buildTree(const vector<int> &nodes) {
 
 
 int main() {
-    auto root = buildTree({33, 14, 40, -1, 27, -1, 73, -1, -1, 47, 74, -1, 48, -1, 88, -1, -1, -1, 89});
-    auto res = Solution().BSTSequences(root);
+    auto root = buildTree({1, 2, 3, 4, 5, -1, 7, 8});
+    auto res = Solution().listOfDepth(root);
     return 0;
 }

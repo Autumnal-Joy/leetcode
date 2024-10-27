@@ -3,12 +3,12 @@ project(leetcode)
 
 set(CMAKE_CXX_STANDARD 20)
 
-file(GLOB SUBDIRECTORIES RELATIVE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/*)
-foreach (SUBDIR ${SUBDIRECTORIES})
-    if (EXISTS ${CMAKE_SOURCE_DIR}/${SUBDIR}/main.cpp)
-        add_executable(${SUBDIR} ${CMAKE_SOURCE_DIR}/${SUBDIR}/main.cpp)
-    endif ()
-endforeach ()
+file(GLOB_RECURSE MAIN_CPP_FILES "*/main.cpp")
+foreach(MAIN_CPP_FILE ${MAIN_CPP_FILES})
+    get_filename_component(DIR ${MAIN_CPP_FILE} DIRECTORY)
+    get_filename_component(TARGET_NAME ${DIR} NAME)
+    add_executable(${TARGET_NAME} ${MAIN_CPP_FILE})
+endforeach()
 
 file(GLOB TESTFILES RELATIVE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/test*.cpp)
 foreach (TESTFILE ${TESTFILES})

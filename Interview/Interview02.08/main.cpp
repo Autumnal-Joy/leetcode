@@ -19,14 +19,12 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         auto slow = head, fast = head;
-        int step = 0;
         do {
             if (!fast || !fast->next) {
                 return nullptr;
             }
             slow = slow->next;
             fast = fast->next->next;
-            ++step;
         } while (slow != fast);
         while (head != slow) {
             head = head->next;

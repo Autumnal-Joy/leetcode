@@ -1,11 +1,9 @@
-#*
-#parse("C File Header.h")
-#if (${HEADER_FILENAME})
-#[[#include]]# "${HEADER_FILENAME}"
-#end
-*##[[#include]]# <bits/stdc++.h>
+#[[#ifdef]]# LEETCODE
+#[[#define]]# DEBUG
+#[[#include]]# <bits/stdc++.h>
 
 using namespace std;
+#[[#endif]]#
 
 static auto _ = []() {
     ios::sync_with_stdio(false);
@@ -16,7 +14,9 @@ static auto _ = []() {
 
 
 
+#[[#ifdef]]# LEETCODE
 int main() {
     
     return 0;
 }
+#[[#endif]]#

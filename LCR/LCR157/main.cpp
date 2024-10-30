@@ -27,17 +27,17 @@ class Solution {
     }
 
 public:
-    vector<string> permutation(string S) {
-        ranges::sort(S);
+    vector<string> goodsOrder(string goods) {
+        ranges::sort(goods);
         auto res = vector<string>();
-        dfs(S, 0, res);
+        dfs(goods, 0, res);
         return res;
     }
 };
 
 #ifdef LEETCODE
 int main() {
-    Solution().permutation("hjpptvvz");
+    Solution().goodsOrder("hjpptvvz");
     return 0;
 }
 #endif

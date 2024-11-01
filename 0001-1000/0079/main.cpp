@@ -1,5 +1,4 @@
 #ifdef LEETCODE
-#define DEBUG
 #include <bits/stdc++.h>
 
 using namespace std;

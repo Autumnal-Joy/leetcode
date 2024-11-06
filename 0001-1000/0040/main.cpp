@@ -1,45 +1,62 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#ifdef LEETCODE
+#include <bits/stdc++.h>
 
 using namespace std;
+#endif
+
+static auto _ = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return 0;
+}();
+
+#ifdef LEETCODE
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    explicit TreeNode(const int x) : val(x), left(nullptr), right(nullptr) {}
+};
+#endif
 
 class Solution {
-public:
-    void dfs(int target, const vector<int> &candidates, int begin,
-             vector<bool> &visited, vector<int> &path, vector<vector<int>> &res) {
+    vector<vector<int>> res;
+    vector<int> path;
+
+    void dfs(vector<int> &candidates, const int begin, const int target) {
+        if (target < 0) {
+            return;
+        }
         if (target == 0) {
             res.push_back(path);
+            return;
         }
-        int last = -1;
+        if (begin == candidates.size()) {
+            return;
+        }
+        auto used = unordered_set<int>();
         for (int i = begin; i < candidates.size(); ++i) {
-            if (visited[i] || candidates[i] > target ||
-                (last != -1 && candidates[last] == candidates[i])) {
-                continue;
-            }
+            if (used.contains(candidates[i])) continue;
+            used.insert(candidates[i]);
             path.push_back(candidates[i]);
-            last = i;
-            visited[i] = true;
-            dfs(target - candidates[i], candidates, i, visited, path, res);
-            visited[i] = false;
+            dfs(candidates, i + 1, target - candidates[i]);
             path.pop_back();
         }
     }
 
+public:
     vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
-        std::sort(candidates.begin(), candidates.end());
-
-        auto res = vector<vector<int>>();
-        auto path = vector<int>();
-        auto visited = vector<bool>(candidates.size(), false);
-        dfs(target, candidates, 0, visited, path, res);
+        ranges::sort(candidates);
+        dfs(candidates, 0, target);
         return res;
     }
 };
 
+#ifdef LEETCODE
 int main() {
-    Solution s;
-    auto candidates = vector<int>{10, 1, 2, 7, 6, 1, 5};
-    s.combinationSum2(candidates, 8);
+    auto candidates = vector({10, 1, 2, 7, 6, 1, 5});
+    auto res = Solution().combinationSum2(candidates, 8);
     return 0;
 }
+#endif

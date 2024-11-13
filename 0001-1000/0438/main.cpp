@@ -1,9 +1,8 @@
-#[[#ifdef]]# LEETCODE
-#[[#define]]# DEBUG
-#[[#include]]# <bits/stdc++.h>
+#ifdef LEETCODE
+#include <bits/stdc++.h>
 
 using namespace std;
-#[[#endif]]#
+#endif
 
 static auto _ = []() {
     ios::sync_with_stdio(false);
@@ -12,7 +11,7 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -24,10 +23,10 @@ TreeNode *vec2tree(const vector<int> &vec) {
         return nullptr;
     }
     auto *root = new TreeNode(vec[0]);
-    auto q = queue<TreeNode *>();
+    queue<TreeNode *> q;
     q.push(root);
     for (size_t i = 1; i < vec.size(); i += 2) {
-        auto node = q.front();
+        TreeNode *node = q.front();
         q.pop();
         if (vec[i] != -1) {
             node->left = new TreeNode(vec[i]);
@@ -57,13 +56,40 @@ ListNode *vec2list(const vector<int> &vec) {
     }
     return head.next;
 }
-#[[#endif]]#
+#endif
 
+class Solution {
+public:
+    vector<int> findAnagrams(const string &s, const string &p) {
+        const auto m = static_cast<int>(s.size());
+        const auto n = static_cast<int>(p.size());
+        auto res = vector<int>();
+        if (m < n) return res;
+        auto cnt_s = array<int, 26>{};
+        auto cnt_p = array<int, 26>{};
+        for (const auto &c: p) {
+            ++cnt_p[c - 'a'];
+        }
+        for (int left = 0, right = 0; right < m;) {
+            ++cnt_s[s[right] - 'a'];
+            ++right;
+            if (right - left > n) {
+                --cnt_s[s[left] - 'a'];
+                ++left;
+            }
+            if (right - left == n && cnt_s == cnt_p) {
+                res.push_back(left);
+            }
+        }
+        return res;
+    }
+};
 
-
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 int main() {
-
+    const auto s = string("cbaebabacd");
+    const auto p = string("abc");
+    Solution().findAnagrams(s, p);
     return 0;
 }
-#[[#endif]]#
+#endif

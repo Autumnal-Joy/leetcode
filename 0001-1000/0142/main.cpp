@@ -63,40 +63,33 @@ ListNode *vec2list(const vector<int> &vec) {
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
 class Solution {
 public:
-    void reorderList(ListNode *head) {
-        auto header = ListNode(0, head);
-        auto temp = &header, mid = &header;
-        while (temp && temp->next) {
-            mid = mid->next;
-            temp = temp->next->next;
+    ListNode *detectCycle(ListNode *head) {
+        auto slow = head, quick = head;
+        do {
+            if (!quick || !quick->next) {
+                return nullptr;
+            }
+            slow = slow->next;
+            quick = quick->next->next;
+        } while (quick != slow);
+        while (slow != head) {
+            slow = slow->next;
+            head = head->next;
         }
-        auto st = stack<ListNode *>();
-        temp = mid->next;
-        mid->next = nullptr;
-        while (temp) {
-            st.push(temp);
-            temp = temp->next;
-        }
-        while (!st.empty()) {
-            const auto top = st.top();
-            st.pop();
-            top->next = head->next;
-            head->next = top;
-            head = top->next;
-        }
+        return slow;
     }
 };
 
 #ifdef LEETCODE
 int main() {
-
+    auto *head = vec2list({3, 2, 0, -4});
+    head->next->next->next->next = head->next;
+    Solution().detectCycle(head);
     return 0;
 }
 #endif

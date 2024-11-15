@@ -57,6 +57,32 @@ ListNode *vec2list(const vector<int> &vec) {
     }
     return head.next;
 }
+vector<vector<int>> read(const string &filename) {
+    auto res = vector<vector<int>>();
+    auto ifs = ifstream(filename);
+    auto line = string();
+    while (getline(ifs, line)) {
+        auto vec = vector<int>();
+        auto iss = istringstream(line);
+        for (int val; iss >> val;) {
+            vec.push_back(val);
+        }
+        res.push_back(std::move(vec));
+    }
+    return res;
+}
+void write(const vector<int> &data, const string &filename) {
+    auto ofs = ofstream(filename);
+    ranges::copy(data, ostream_iterator<int>(ofs, " "));
+    ofs << '\n';
+}
+void write(const vector<vector<int>> &data, const string &filename) {
+    auto ofs = ofstream(filename);
+    for (const auto &line: data) {
+        ranges::copy(line, ostream_iterator<int>(ofs, " "));
+        ofs << '\n';
+    }
+}
 #[[#endif]]#
 
 

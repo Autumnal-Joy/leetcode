@@ -1,4 +1,5 @@
 #ifdef LEETCODE
+#define DEBUG
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -84,34 +85,60 @@ void write(const vector<vector<int>> &data, const string &filename) {
 }
 #endif
 
+template<typename Pred>
+int first(int left, int right, Pred pred) {
+    while (left + 1 < right) {
+        auto mid = left + (right - left) / 2;
+        if (pred(mid)) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+    return right;
+}
+
+template<typename Pred>
+int last(int left, int right, Pred pred) {
+    while (left + 1 < right) {
+        auto mid = left + (right - left) / 2;
+        if (pred(mid)) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    return left;
+}
 
 class Solution {
 public:
-    int numFriendRequests(vector<int> &ages) {
-        auto res = 0;
-        auto cnt = vector<int>(121);
-        auto range = vector<int>(121);
-        for (const auto &age: ages) {
-            ++cnt[age];
-        }
-        for (int age = 120; age > 0; --age) {
-            if (!cnt[age]) continue;
-            res += cnt[age] * range[age];
-            for (int j = 0.5 * age + 8; j <= age; ++j) {
-                range[j] += cnt[age];
+    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+        if (nums1.size() > nums2.size()) std::swap(nums1, nums2);
+        nums1.insert(nums1.begin(), -1e6);
+        nums1.insert(nums1.end(), 1e6);
+        nums2.insert(nums2.begin(), -1e6);
+        nums2.insert(nums2.end(), 1e6);
+        const auto n1 = static_cast<int>(nums1.size());
+        const auto n2 = static_cast<int>(nums2.size());
+        const auto n = n1 + n2;
+        int i = 1, j = (n - 1) / 2;
+        while (true) {
+            const auto max1 = std::max({nums1[i - 1], nums2[j - 1]});
+            const auto min2 = std::min({nums1[i], nums2[j]});
+            if (max1 <= min2) {
+                return n & 1 ? max1 : (max1 + min2) / 2.0;
             }
+            ++i, --j;
         }
-        for (int age = 15; age <= 120; ++age) {
-            res += cnt[age] * (cnt[age] - 1);
-        }
-        return res;
     }
 };
 
 #ifdef LEETCODE
 int main() {
-    auto ages = vector({18, 17, 16});
-    Solution().numFriendRequests(ages);
+    auto nums1 = vector{1, 2, 8, 9, 10, 11, 12, 13, 14, 15};
+    auto nums2 = vector{3, 4, 5, 6, 7};
+    Solution().findMedianSortedArrays(nums1, nums2);
     return 0;
 }
 #endif

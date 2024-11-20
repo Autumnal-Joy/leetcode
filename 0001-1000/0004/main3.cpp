@@ -84,34 +84,34 @@ void write(const vector<vector<int>> &data, const string &filename) {
 }
 #endif
 
-
 class Solution {
 public:
-    int numFriendRequests(vector<int> &ages) {
-        auto res = 0;
-        auto cnt = vector<int>(121);
-        auto range = vector<int>(121);
-        for (const auto &age: ages) {
-            ++cnt[age];
-        }
-        for (int age = 120; age > 0; --age) {
-            if (!cnt[age]) continue;
-            res += cnt[age] * range[age];
-            for (int j = 0.5 * age + 8; j <= age; ++j) {
-                range[j] += cnt[age];
+    double findMedianSortedArrays(const vector<int> &nums1, const vector<int> &nums2) {
+        const auto n1 = nums1.size();
+        const auto n2 = nums2.size();
+        auto nums = vector<int>();
+        int i = 0, j = 0;
+        while (i < n1 && j < n2) {
+            if (nums1[i] < nums2[j]) {
+                nums.push_back(nums1[i++]);
+            } else {
+                nums.push_back(nums2[j++]);
             }
         }
-        for (int age = 15; age <= 120; ++age) {
-            res += cnt[age] * (cnt[age] - 1);
+        while (i < n1) {
+            nums.push_back(nums1[i++]);
         }
-        return res;
+        while (j < n2) {
+            nums.push_back(nums2[j++]);
+        }
+        const auto n = n1 + n2;
+        return n & 1 ? nums[n / 2] : (nums[n / 2 - 1] + nums[n / 2]) / 2.0;
     }
 };
 
 #ifdef LEETCODE
 int main() {
-    auto ages = vector({18, 17, 16});
-    Solution().numFriendRequests(ages);
+
     return 0;
 }
 #endif

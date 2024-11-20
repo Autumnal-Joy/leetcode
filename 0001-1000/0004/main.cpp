@@ -84,34 +84,56 @@ void write(const vector<vector<int>> &data, const string &filename) {
 }
 #endif
 
+template<typename Pred>
+int first(int left, int right, Pred pred) {
+    while (left + 1 < right) {
+        auto mid = left + (right - left) / 2;
+        if (pred(mid)) {
+            right = mid;
+        } else {
+            left = mid;
+        }
+    }
+    return right;
+}
+template<typename Pred>
+int last(int left, int right, Pred pred) {
+    while (left + 1 < right) {
+        auto mid = left + (right - left) / 2;
+        if (pred(mid)) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    return left;
+}
 
 class Solution {
 public:
-    int numFriendRequests(vector<int> &ages) {
-        auto res = 0;
-        auto cnt = vector<int>(121);
-        auto range = vector<int>(121);
-        for (const auto &age: ages) {
-            ++cnt[age];
-        }
-        for (int age = 120; age > 0; --age) {
-            if (!cnt[age]) continue;
-            res += cnt[age] * range[age];
-            for (int j = 0.5 * age + 8; j <= age; ++j) {
-                range[j] += cnt[age];
-            }
-        }
-        for (int age = 15; age <= 120; ++age) {
-            res += cnt[age] * (cnt[age] - 1);
-        }
-        return res;
+    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+        if (nums1.size() > nums2.size()) std::swap(nums1, nums2);
+        const auto n1 = static_cast<int>(nums1.size());
+        const auto n2 = static_cast<int>(nums2.size());
+        const auto n = n1 + n2;
+
+        auto check = [&](const int i) {
+            const auto j = (n - 1) / 2 + 1 - i;
+            return i == 0 || nums1[i - 1] <= nums2[j];
+        };
+        const auto i = last(-1, n1 + 1, check);
+        const auto j = (n - 1) / 2 + 1 - i;
+        const auto max1 = std::max({i - 1 >= 0 ? nums1[i - 1] : -1000000, j - 1 >= 0 ? nums2[j - 1] : -1000000});
+        const auto min2 = std::min({i < n1 ? nums1[i] : 1000000, j < n2 ? nums2[j] : 1000000});
+        return n & 1 ? max1 : (max1 + min2) / 2.0;
     }
 };
 
 #ifdef LEETCODE
 int main() {
-    auto ages = vector({18, 17, 16});
-    Solution().numFriendRequests(ages);
+    auto nums1 = vector{2};
+    auto nums2 = vector{1, 3};
+    Solution().findMedianSortedArrays(nums1, nums2);
     return 0;
 }
 #endif

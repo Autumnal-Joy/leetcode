@@ -86,20 +86,46 @@ void write(const vector<vector<int>> &data, const string &filename) {
 
 class Solution {
 public:
-    int maxSubArray(const vector<int> &nums) {
-        auto dp = nums[0];
-        auto res = nums[0];
-        for (int i = 1; i < nums.size(); ++i) {
-            dp = (dp > 0 ? dp : 0) + nums[i];
-            res = std::max({res, dp});
+    int minFallingPathSum(const vector<vector<int>> &grid) {
+        const auto n = grid.size();
+        vector dp(n, vector(n, 0x3f3f3f3f));
+        dp[0] = grid[0];
+        int pre_idx1 = -1, pre_idx2 = -1;
+        for (int j = 0; j < n; ++j) {
+            if (pre_idx1 == -1 || dp[0][j] < dp[0][pre_idx1]) {
+                pre_idx2 = pre_idx1;
+                pre_idx1 = j;
+            } else if (pre_idx2 == -1 || dp[0][j] < dp[0][pre_idx2]) {
+                pre_idx2 = j;
+            }
         }
-        return res;
+        for (int i = 1; i < n; ++i) {
+            int idx1 = -1, idx2 = -1;
+            for (int j = 0; j < n; ++j) {
+                dp[i][j] = std::min(j == pre_idx1 ? 0x3f3f3f3f : dp[i - 1][pre_idx1],
+                                    j == pre_idx2 ? 0x3f3f3f3f : dp[i - 1][pre_idx2]) +
+                           grid[i][j];
+                if (idx1 == -1 || dp[i][j] < dp[i][idx1]) {
+                    idx2 = idx1;
+                    idx1 = j;
+                } else if (idx2 == -1 || dp[i][j] < dp[i][idx2]) {
+                    idx2 = j;
+                }
+            }
+            pre_idx1 = idx1, pre_idx2 = idx2;
+        }
+        return dp[n - 1][pre_idx1];
     }
 };
 
 #ifdef LEETCODE
 int main() {
-
+    const auto grid = vector<vector<int>>({
+            {1, 99, 99},
+            {0, 2, 1},
+            {99, 99, 4},
+    });
+    Solution().minFallingPathSum(grid);
     return 0;
 }
 #endif

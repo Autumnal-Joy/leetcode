@@ -85,27 +85,32 @@ void write(const vector<vector<int>> &data, const string &filename) {
 #endif
 
 class Solution {
-    long long M = 1e9 + 7;
-
 public:
-    int numberOfWays(const int n, const int x) {
-        auto dp = vector(n + 1, 0ll);
-        dp[0] = 1;
-        auto s = 0;
-        for (int i = 0, cnt = static_cast<int>(std::pow(n + 1, 1.0 / x)); i < cnt; ++i) {
-            const auto num = static_cast<int>(pow(i + 1, x));
-            s = std::min(n, s + num);
-            for (int j = s; j >= num; --j) {
-                dp[j] = (dp[j] + dp[j - num]) % M;
+    int findMaxForm(const vector<string> &strs, const int m, const int n) {
+        const auto len = static_cast<int>(strs.size());
+        auto dp = vector(m + 1, vector(n + 1, 0));
+        for (int i = 0; i < len; ++i) {
+            auto cnt0 = 0, cnt1 = 0;
+            for (const auto &ch: strs[i]) {
+                if (ch == '0') {
+                    ++cnt0;
+                } else {
+                    ++cnt1;
+                }
+            }
+            for (int j = m; j >= cnt0; --j) {
+                for (int k = n; k >= cnt1; --k) {
+                    dp[j][k] = std::max(dp[j][k], dp[j - cnt0][k - cnt1] + 1);
+                }
             }
         }
-        return static_cast<int>(dp[n]);
+        return dp[m][n];
     }
 };
 
 #ifdef LEETCODE
 int main() {
-    Solution().numberOfWays(10, 2);
+
     return 0;
 }
 #endif

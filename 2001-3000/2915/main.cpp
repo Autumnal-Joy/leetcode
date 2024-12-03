@@ -94,10 +94,8 @@ public:
         auto sum = 0;
         for (const auto &num: nums) {
             sum += num;
-            for (int j = std::min(sum, target); j >= 0; --j) {
-                if (j - num >= 0) {
-                    dp[j] = std::max(dp[j], dp[j - num] + 1);
-                }
+            for (int j = std::min(sum, target); j >= num; --j) {
+                dp[j] = std::max(dp[j], dp[j - num] + 1);
             }
         }
         return dp[target] > 0 ? dp[target] : -1;

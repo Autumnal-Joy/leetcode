@@ -1,9 +1,7 @@
-#[[#ifdef]]# LEETCODE
-#[[#define]]# DEBUG
 #[[#include]]# <bits/stdc++.h>
+#[[#define]]# DEBUG
 
 using namespace std;
-#[[#endif]]#
 
 static auto _ = []() {
     ios::sync_with_stdio(false);

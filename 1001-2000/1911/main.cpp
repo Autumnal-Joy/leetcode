@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -10,7 +9,7 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -25,7 +24,7 @@ TreeNode *vec2tree(const vector<int> &vec) {
     auto q = queue<TreeNode *>();
     q.push(root);
     for (size_t i = 1; i < vec.size(); i += 2) {
-        const auto node = q.front();
+        auto node = q.front();
         q.pop();
         if (vec[i] != -1) {
             node->left = new TreeNode(vec[i]);
@@ -81,13 +80,28 @@ void write(const vector<vector<int>> &data, const string &filename) {
         ofs << '\n';
     }
 }
-#[[#endif]]#
+#endif
 
+class Solution {
+public:
+    long long maxAlternatingSum(const vector<int> &nums) {
+        const auto n = static_cast<int>(nums.size());
+        auto dp = vector(2, 0ll);
+        dp = {-0x3f3f3f3f3f3f3f3f, 0};
+        auto res = 0ll;
+        for (int i = 0; i < n; ++i) {
+            const auto temp = dp[0];
+            dp[0] = std::max(dp[0], dp[1] + nums[i]);
+            dp[1] = std::max(dp[1], temp - nums[i]);
+            res = std::max(res, dp[0]);
+        }
+        return res;
+    }
+};
 
-
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 int main() {
 
     return 0;
 }
-#[[#endif]]#
+#endif

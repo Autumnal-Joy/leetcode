@@ -1,15 +1,15 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
 static auto _ = []() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -80,13 +80,27 @@ void write(const vector<vector<int>> &data, const string &filename) {
         ofs << '\n';
     }
 }
-#[[#endif]]#
+#endif
 
+class Solution {
+public:
+    long long maximumTotalCost(const vector<int> &nums) {
+        const auto n = static_cast<int>(nums.size());
+        auto dp = vector(2, 0ll);
+        dp = {nums[0], -0x3f3f3f3f3f3f3f3f};
+        for (int i = 1; i < n; ++i) {
+            const auto temp = dp[0];
+            dp[0] = std::max(dp[0] + nums[i], dp[1] + nums[i]);
+            dp[1] = temp - nums[i];
+        }
+        return std::max(dp[0], dp[1]);
+    }
+};
 
-
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 int main() {
-
+    auto nums = vector({1, -2, 3, 4});
+    Solution().maximumTotalCost(nums);
     return 0;
 }
-#[[#endif]]#
+#endif

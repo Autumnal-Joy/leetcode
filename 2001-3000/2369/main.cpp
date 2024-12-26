@@ -82,31 +82,30 @@ void write(const vector<vector<int>> &data, const string &filename) {
 #endif
 
 class Solution {
-    const long long MOD = 1e9 + 7;
-
 public:
-    int countSpecialSubsequences(const vector<int> &nums) {
+    bool validPartition(const vector<int> &nums) {
         const auto n = static_cast<int>(nums.size());
-        auto dp = vector(3, 0ll);
-        if (nums[0] == 0) {
-            dp[0] = 1;
-        }
-        for (int i = 1; i < n; ++i) {
-            if (nums[i] == 0) {
-                dp[0] = (dp[0] * 2 + 1) % MOD;
-            } else if (nums[i] == 1) {
-                dp[1] = (dp[1] * 2 + dp[0]) % MOD;
-            } else {
-                dp[2] = (dp[2] * 2 + dp[1]) % MOD;
+        auto dp = vector(n, false);
+        if (n >= 2) {
+            const auto diff10 = nums[1] - nums[0];
+            dp[1] = diff10 == 0;
+            if (n >= 3) {
+                const auto diff21 = nums[2] - nums[1];
+                dp[2] = diff10 == 0 && diff21 == 0 || diff10 == 1 && diff21 == 1;
             }
         }
-        return static_cast<int>(dp[2]);
+        for (int i = 3; i < n; ++i) {
+            const auto diff10 = nums[i] - nums[i - 1], diff21 = nums[i - 1] - nums[i - 2];
+            dp[i] = dp[i - 2] && diff10 == 0 || dp[i - 3] && (diff10 == 1 && diff21 == 1 || diff10 == 0 && diff21 == 0);
+        }
+        return dp[n - 1];
     }
 };
 
 #ifdef LEETCODE
 int main() {
-
+    auto nums = vector({579611, 579611, 579611, 731172, 731172, 496074, 496074, 496074, 151416, 151416, 151416});
+    Solution().validPartition(nums);
     return 0;
 }
 #endif

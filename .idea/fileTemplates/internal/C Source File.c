@@ -82,13 +82,15 @@ void write(const vector<vector<int>> &data, const string &filename) {
 }
 #[[#endif]]#
 
-#define Array1(type, size1) array<type, size1>
-#define Array2(type, size1, size2) array<array<type, size2>, size1>
-#define Array3(type, size1, size2, size3) array<array<array<type, size3>, size2>, size1>
-#define MAX_I 0x3f3f3f3f
-#define MIN_I (-MAX_I)
-#define MAX_LL 0x3f3f3f3f3f3f3f3f
-#define MIN_LL (-MAX_LL)
+#[[#define]]# Array1(type, size1) array<type, size1>
+#[[#define]]# Array2(type, size1, size2) array<array<type, size2>, size1>
+#[[#define]]# Array3(type, size1, size2, size3) array<array<array<type, size3>, size2>, size1>
+#[[#define]]# MAX_I 0x3f3f3f3f
+#[[#define]]# MIN_I (-MAX_I)
+#[[#define]]# MAX_LL 0x3f3f3f3f3f3f3f3f
+#[[#define]]# MIN_LL (-MAX_LL)
+
+
 
 #[[#ifdef]]# LEETCODE
 int main() {

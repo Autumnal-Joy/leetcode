@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,7 +8,7 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -80,17 +79,44 @@ void write(const vector<vector<int>> &data, const string &filename) {
         ofs << '\n';
     }
 }
-#[[#endif]]#
+#endif
 
-#[[#define]]# Array1(type, size1) array<type, size1>
-#[[#define]]# Array2(type, size1, size2) array<array<type, size2>, size1>
-#[[#define]]# Array3(type, size1, size2, size3) array<array<array<type, size3>, size2>, size1>
+#define Array1(type, size1) array<type, size1>
+#define Array2(type, size1, size2) array<array<type, size2>, size1>
+#define Array3(type, size1, size2, size3) array<array<array<type, size3>, size2>, size1>
 
+constexpr int N = 1e5 + 1;
+constexpr int L = 1001;
 
+class Solution {
+public:
+    int minimumFinishTime(const vector<vector<int>> &tires, const int changeTime, const int numLaps) {
+        const auto n = static_cast<int>(tires.size());
+        auto minSec = vector(18, 0x3f3f3f3f);
+        for (int i = 0; i < n; ++i) {
+            long long time = tires[i][0], sum = 0;
+            for (int x = 1; time <= changeTime + tires[i][0]; ++x) {
+                sum += time;
+                minSec[x] = std::min(minSec[x], static_cast<int>(sum));
+                time *= tires[i][1];
+            }
+        }
 
-#[[#ifdef]]# LEETCODE
+        auto dp = vector(numLaps + 1, 0x3f3f3f3f);
+        dp[0] = -changeTime;
+        for (int i = 1; i <= numLaps; ++i) {
+            for (int j = 1; j <= std::min(i, 17); ++j) {
+                dp[i] = std::min(dp[i], dp[i - j] + minSec[j]);
+            }
+            dp[i] += changeTime;
+        }
+        return dp[numLaps];
+    }
+};
+
+#ifdef LEETCODE
 int main() {
 
     return 0;
 }
-#[[#endif]]#
+#endif

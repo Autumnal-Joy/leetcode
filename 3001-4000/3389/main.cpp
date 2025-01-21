@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,7 +8,7 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -80,7 +79,7 @@ void write(const vector<vector<int>> &data, const string &filename) {
         ofs << '\n';
     }
 }
-#[[#endif]]#
+#endif
 
 #define Array1(type, size1) array<type, size1>
 #define Array2(type, size1, size2) array<array<type, size2>, size1>
@@ -90,9 +89,42 @@ void write(const vector<vector<int>> &data, const string &filename) {
 #define MAX_LL 0x3f3f3f3f3f3f3f3f
 #define MIN_LL (-MAX_LL)
 
-#[[#ifdef]]# LEETCODE
+class Solution {
+public:
+    int makeStringGood(const string &s) {
+        auto cnt = Array1(int, 26)({});
+        for (const auto c: s) {
+            cnt[c - 'a']++;
+        }
+        const auto m = ranges::max(cnt);
+        auto res = 0x3f3f3f3f;
+        for (int target = 0; target <= m; ++target) {
+            auto dp = Array2(int, 26, 2)();
+            dp.fill({MAX_I, MAX_I});
+            dp[0] = {std::min(cnt[0], std::abs(cnt[0] - target)), 0};
+            for (int i = 1; i < 26; ++i) {
+                dp[i][1] = dp[i - 1][0];
+                dp[i][0] = dp[i - 1][0] + std::min(cnt[i], std::abs(cnt[i] - target));
+                if (cnt[i] < target) {
+                    if (cnt[i - 1] < target) {
+                        // 0, target
+                        dp[i][0] = std::min(dp[i][0], dp[i - 1][1] + std::max(cnt[i - 1], target - cnt[i]));
+                    }
+                    if (cnt[i - 1] > target) {
+                        // target, target
+                        dp[i][0] = std::min(dp[i][0], dp[i - 1][1] + std::max(cnt[i - 1] - target, target - cnt[i]));
+                    }
+                }
+            }
+            res = std::min(res, dp[25][0]);
+        }
+        return res;
+    }
+};
+
+#ifdef LEETCODE
 int main() {
 
     return 0;
 }
-#[[#endif]]#
+#endif

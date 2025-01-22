@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,7 +8,7 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -80,7 +79,7 @@ void write(const vector<vector<int>> &data, const string &filename) {
         ofs << '\n';
     }
 }
-#[[#endif]]#
+#endif
 
 template<typename T, size_t N>
 auto Array() {
@@ -94,16 +93,33 @@ template<typename T, size_t N1, size_t N2, size_t N3>
 auto Array() {
     return array<array<array<T, N3>, N2>, N1>({});
 }
-#[[#define]]# MAX_I 0x3f3f3f3f
-#[[#define]]# MIN_I (-MAX_I)
-#[[#define]]# MAX_LL 0x3f3f3f3f3f3f3f3f
-#[[#define]]# MIN_LL (-MAX_LL)
+#define MAX_I 0x3f3f3f3f
+#define MIN_I (-MAX_I)
+#define MAX_LL 0x3f3f3f3f3f3f3f3f
+#define MIN_LL (-MAX_LL)
 
+class Solution {
+public:
+    int numberOfArithmeticSlices(const vector<int> &nums) {
+        auto res = 0;
+        const auto n = static_cast<int>(nums.size());
+        auto dp = Array<unordered_map<long long, int>, 1001>();
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                const auto diff = 0ll + nums[i] - nums[j];
+                const auto cnt = dp[j].contains(diff) ? dp[j][diff] + 1 : 1;
+                dp[i][diff] += cnt;
+                res += cnt;
+            }
+        }
+        return res - n * (n - 1) / 2;
+    }
+};
 
-
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 int main() {
-
+    auto nums = vector({2, 4, 6, 8, 10});
+    Solution().numberOfArithmeticSlices(nums);
     return 0;
 }
-#[[#endif]]#
+#endif

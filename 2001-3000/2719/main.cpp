@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,16 +8,12 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
-
-#[[#ifndef]]# TREE_NODE
-#[[#define]]# TREE_NODE
+#ifdef LEETCODE
 struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
-    explicit TreeNode(const int x = 0) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(const int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    explicit TreeNode(const int x) : val(x), left(nullptr), right(nullptr) {}
 };
 TreeNode *vec2tree(const vector<int> &vec) {
     if (vec.empty()) {
@@ -41,10 +36,7 @@ TreeNode *vec2tree(const vector<int> &vec) {
     }
     return root;
 }
-#[[#endif]]#
 
-#[[#ifndef]]# LIST_NODE
-#[[#define]]# LIST_NODE
 struct ListNode {
     int val;
     ListNode *next;
@@ -61,27 +53,7 @@ ListNode *vec2list(const vector<int> &vec) {
     }
     return head.next;
 }
-#[[#endif]]#
-
-#[[#endif]]#
-
-using ll = long long;
-using ull = unsigned long long;
-using VI = vector<int>;
-using PII = pair<int, int>;
-using PLL = pair<ll, ll>;
-
-template<class T>
-using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
-
-constexpr int MAX_I = 0x3f3f3f3f;
-constexpr int MIN_I = -MAX_I;
-constexpr int MOD = 1e9 + 7;
-constexpr ll MAX_LL = 0x3f3f3f3f'3f3f3f3f;
-constexpr ll MIN_LL = -MAX_LL;
-constexpr double EPS = 1e-8;
-
-vector<vector<int>> read2d(const string &filename) {
+vector<vector<int>> read(const string &filename) {
     auto res = vector<vector<int>>();
     auto ifs = ifstream(filename);
     auto line = string();
@@ -95,19 +67,21 @@ vector<vector<int>> read2d(const string &filename) {
     }
     return res;
 }
-void write1d(const vector<int> &data, const string &filename) {
+void write(const vector<int> &data, const string &filename) {
     auto ofs = ofstream(filename);
-    std::copy(data.begin(), data.end(), ostream_iterator<int>(ofs, " "));
+    copy(data.begin(), data.end(), ostream_iterator<int>(ofs, " "));
     ofs << '\n';
 }
-void write2d(const vector<vector<int>> &data, const string &filename) {
+void write(const vector<vector<int>> &data, const string &filename) {
     auto ofs = ofstream(filename);
     for (const auto &line: data) {
-        std::copy(line.begin(), line.end(), ostream_iterator<int>(ofs, " "));
+        copy(line.begin(), line.end(), ostream_iterator<int>(ofs, " "));
         ofs << '\n';
     }
 }
+#endif
 
+#if __cplusplus >= 201703L
 template<typename T, size_t N, size_t... Ns>
 auto Array() {
     if constexpr (sizeof...(Ns) == 0) {
@@ -133,51 +107,46 @@ void fillArray(T &arr, const V &val) {
         arr = val;
     }
 }
+#endif
 
-auto size = [](const auto &arr) {
-    return static_cast<int>(arr.size());
+#define MAX_I 0x3f3f3f3f
+#define MIN_I (-MAX_I)
+#define MAX_LL 0x3f3f3f3f3f3f3f3f
+#define MIN_LL (-MAX_LL)
+
+class Solution {
+    const long long Mod = 1e9 + 7;
+
+public:
+    int count(const string &num1, const string &num2, const int min_sum, const int max_sum) {
+        const auto &num1_pad = string(num2.size() - num1.size(), '0') + num1;
+        auto memo = Array<int, 24, 2, 2, 300>();
+        fillArray(memo, -1);
+
+        auto dp = [&](auto &&self, const int i, const bool &lo_lim, const bool &hi_lim, const int sum) -> int {
+            if (sum > max_sum) return 0;
+            if (i == num1_pad.size()) return sum >= min_sum;
+
+            auto &m = memo[i][lo_lim][hi_lim][sum];
+            if (m != -1) return m;
+
+            const auto lo = lo_lim ? num1_pad[i] - '0' : 0;
+            const auto hi = hi_lim ? num2[i] - '0' : 9;
+
+            auto res = 0ll;
+            for (int d = lo; d <= hi; ++d) {
+                res += self(self, i + 1, lo_lim && d == lo, hi_lim && d == hi, sum + d);
+                res %= Mod;
+            }
+            return m = static_cast<int>(res);
+        };
+        return dp(dp, 0, true, true, 0);
+    }
 };
 
-template<typename T>
-void print(const T &x) { cerr << x; }
-
-void print(const char &x) { cerr << '\'' << x << '\''; }
-void print(const string &x) { cerr << '\"' << x << '\"'; }
-void print(const char *const &x) { cerr << '\"' << x << '\"'; }
-void print(const bool &x) { cerr << (x ? "true" : "false"); }
-
-template<typename T, typename V>
-void print(const pair<T, V> &x) {
-    cerr << "{";
-    print(x.first);
-    cerr << ", ";
-    print(x.second);
-    cerr << "}";
-}
-
-template<typename T, typename... Args>
-void print(T t, Args... v) { print(t), print(v...); }
-
-template<std::ranges::range T>
-void print(const T &x) {
-    cerr << "{";
-    int f = 0;
-    for (auto &i: x) {
-        cerr << (f++ ? ", " : "");
-        print(i);
-    }
-    cerr << "}";
-}
-
-#[[#define]]# dbg(x...)                                                \
-    cerr << __func__ << ":" << __LINE__ << " [" << #x << "] = "; \
-    print(x);                                                    \
-    cerr << endl;
-
-
-
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 int main() {
+    Solution().count("123", "321", 10, 20);
     return 0;
 }
-#[[#endif]]#
+#endif

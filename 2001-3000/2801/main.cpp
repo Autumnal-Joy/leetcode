@@ -1,12 +1,11 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
-#[[#ifdef]]# LOCAL
-#[[#include]]# "lc_structures.h"
-#[[#include]]# "log.h"
-#[[#else]]#
-#[[#define]]# dbg(x...) (x)
-#[[#endif]]#
+#ifdef LOCAL
+#include "lc_structures.h"
+#include "log.h"
+#else
+#define dbg(x...) (x)
+#endif
 
 using namespace std;
 
@@ -117,11 +116,38 @@ void fillArray(T &arr, const V &val) {
     }
 }
 
+class Solution {
+public:
+    int countSteppingNumbers(string low, const string &high) {
+        low = string(high.size() - low.size(), '0') + low;
+        const auto n = static_cast<int>(low.size());
 
+        auto memo = Array<int, 101, 2, 2, 11>();
+        fillArray(memo, -1);
 
-#[[#ifdef]]# LOCAL
+        auto dfs = [&](auto &&self, const int i, const bool lo_lim, const bool hi_lim, const int prev) -> int {
+            auto &m = memo[i][lo_lim][hi_lim][prev + 1];
+            if (m != -1) return m;
+
+            if (i == n) { return prev != -1; }
+            const auto lo = lo_lim ? low[i] - '0' : 0;
+            const auto hi = hi_lim ? high[i] - '0' : 9;
+            auto res = 0ll;
+            for (int d = lo; d <= hi; ++d) {
+                if (prev == -1 || abs(d - prev) == 1) {
+                    res += self(self, i + 1, lo_lim && d == lo, hi_lim && d == hi, prev == -1 && d == 0 ? -1 : d);
+                }
+            }
+            return m = static_cast<int>(res % MOD);
+        };
+
+        return dfs(dfs, 0, true, true, -1);
+    }
+};
+
+#ifdef LOCAL
+
 int main() {
-
     return 0;
 }
-#[[#endif]]#
+#endif

@@ -1,10 +1,9 @@
 //
 // Created by Autumnal Joy on 2025/2/18.
 //
-#include <bits/stdc++.h>
+#pragma once
 
-#ifndef LC_STRUCTURES_H
-#define LC_STRUCTURES_H
+#include <bits/stdc++.h>
 
 #ifndef TREE_NODE
 #define TREE_NODE
@@ -28,4 +27,3 @@ struct ListNode {
 };
 #endif
 
-#endif //LC_STRUCTURES_H

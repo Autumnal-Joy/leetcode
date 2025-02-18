@@ -3,6 +3,9 @@ project(leetcode)
 
 set(CMAKE_CXX_STANDARD 20)
 add_definitions(-DLEETCODE)
+add_definitions(-DLOCAL)
+
+include_directories(${CMAKE_SOURCE_DIR}/templates)
 
 file(GLOB_RECURSE MAIN_CPP_FILES "*/main.cpp")
 foreach (MAIN_CPP_FILE ${MAIN_CPP_FILES})

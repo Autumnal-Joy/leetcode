@@ -1,6 +1,13 @@
 #[[#include]]# <bits/stdc++.h>
 #[[#define]]# DEBUG
 
+#[[#ifdef]]# LOCAL
+#[[#include]]# "templates/lc_structures.h"
+#[[#include]]# "templates/log.h"
+#[[#else]]#
+#[[#define]]# dbg(x...) (x)
+#[[#endif]]#
+
 using namespace std;
 
 static auto _ = []() {
@@ -8,62 +15,6 @@ static auto _ = []() {
     cin.tie(nullptr);
     return 0;
 }();
-
-#[[#ifdef]]# LEETCODE
-
-#[[#ifndef]]# TREE_NODE
-#[[#define]]# TREE_NODE
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    explicit TreeNode(const int x = 0) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(const int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-TreeNode *vec2tree(const vector<int> &vec) {
-    if (vec.empty()) {
-        return nullptr;
-    }
-    auto *root = new TreeNode(vec[0]);
-    auto q = queue<TreeNode *>();
-    q.push(root);
-    for (size_t i = 1; i < vec.size(); i += 2) {
-        const auto node = q.front();
-        q.pop();
-        if (vec[i] != -1) {
-            node->left = new TreeNode(vec[i]);
-            q.push(node->left);
-        }
-        if (i + 1 < vec.size() && vec[i + 1] != -1) {
-            node->right = new TreeNode(vec[i + 1]);
-            q.push(node->right);
-        }
-    }
-    return root;
-}
-#[[#endif]]#
-
-#[[#ifndef]]# LIST_NODE
-#[[#define]]# LIST_NODE
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    explicit ListNode(const int x) : val(x), next(nullptr) {}
-    ListNode(const int x, ListNode *next) : val(x), next(next) {}
-};
-ListNode *vec2list(const vector<int> &vec) {
-    ListNode head;
-    ListNode *p = &head;
-    for (const auto &val: vec) {
-        p->next = new ListNode(val);
-        p = p->next;
-    }
-    return head.next;
-}
-#[[#endif]]#
-
-#[[#endif]]#
 
 using ll = long long;
 using ull = unsigned long long;
@@ -80,6 +31,38 @@ constexpr int MOD = 1e9 + 7;
 constexpr ll MAX_LL = 0x3f3f3f3f'3f3f3f3f;
 constexpr ll MIN_LL = -MAX_LL;
 constexpr double EPS = 1e-8;
+
+TreeNode *vec2tree(const std::vector<int> &vec) {
+    if (vec.empty()) {
+        return nullptr;
+    }
+    auto *root = new TreeNode(vec[0]);
+    auto q = std::queue<TreeNode *>();
+    q.push(root);
+    for (size_t i = 1; i < vec.size(); i += 2) {
+        const auto node = q.front();
+        q.pop();
+        if (vec[i] != -1) {
+            node->left = new TreeNode(vec[i]);
+            q.push(node->left);
+        }
+        if (i + 1 < vec.size() && vec[i + 1] != -1) {
+            node->right = new TreeNode(vec[i + 1]);
+            q.push(node->right);
+        }
+    }
+    return root;
+}
+
+ListNode *vec2list(const std::vector<int> &vec) {
+    ListNode head;
+    ListNode *p = &head;
+    for (const auto &val: vec) {
+        p->next = new ListNode(val);
+        p = p->next;
+    }
+    return head.next;
+}
 
 vector<vector<int>> read2d(const string &filename) {
     auto res = vector<vector<int>>();
@@ -134,46 +117,11 @@ void fillArray(T &arr, const V &val) {
     }
 }
 
-template<typename T>
-void print(const T &x) { cerr << x; }
-
-void print(const char &x) { cerr << '\'' << x << '\''; }
-void print(const string &x) { cerr << '\"' << x << '\"'; }
-void print(const char *const &x) { cerr << '\"' << x << '\"'; }
-void print(const bool &x) { cerr << (x ? "true" : "false"); }
-
-template<typename T, typename V>
-void print(const pair<T, V> &x) {
-    cerr << "{";
-    print(x.first);
-    cerr << ", ";
-    print(x.second);
-    cerr << "}";
-}
-
-template<typename T, typename... Args>
-void print(T t, Args... v) { print(t), print(v...); }
-
-template<std::ranges::range T>
-void print(const T &x) {
-    cerr << "{";
-    int f = 0;
-    for (auto &i: x) {
-        cerr << (f++ ? ", " : "");
-        print(i);
-    }
-    cerr << "}";
-}
-
-#[[#define]]# dbg(x...)                                                \
-    cerr << __func__ << ":" << __LINE__ << " [" << #x << "] = "; \
-    print(x);                                                    \
-    cerr << endl;
 
 
-
-#[[#ifdef]]# LEETCODE
+#[[#ifdef]]# LOCAL
 int main() {
+
     return 0;
 }
 #[[#endif]]#

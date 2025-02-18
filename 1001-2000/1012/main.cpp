@@ -1,5 +1,4 @@
-#[[#include]]# <bits/stdc++.h>
-#[[#define]]# DEBUG
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,10 +8,10 @@ static auto _ = []() {
     return 0;
 }();
 
-#[[#ifdef]]# LEETCODE
+#ifdef LEETCODE
 
-#[[#ifndef]]# TREE_NODE
-#[[#define]]# TREE_NODE
+#ifndef TREE_NODE
+#define TREE_NODE
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -41,10 +40,10 @@ TreeNode *vec2tree(const vector<int> &vec) {
     }
     return root;
 }
-#[[#endif]]#
+#endif
 
-#[[#ifndef]]# LIST_NODE
-#[[#define]]# LIST_NODE
+#ifndef LIST_NODE
+#define LIST_NODE
 struct ListNode {
     int val;
     ListNode *next;
@@ -61,9 +60,9 @@ ListNode *vec2list(const vector<int> &vec) {
     }
     return head.next;
 }
-#[[#endif]]#
+#endif
 
-#[[#endif]]#
+#endif
 
 using ll = long long;
 using ull = unsigned long long;
@@ -165,15 +164,46 @@ void print(const T &x) {
     cerr << "}";
 }
 
-#[[#define]]# dbg(x...)                                                \
+#define dbg(x...)                                                \
     cerr << __func__ << ":" << __LINE__ << " [" << #x << "] = "; \
     print(x);                                                    \
     cerr << endl;
 
+class Solution {
+public:
+    int numDupDigitsAtMostN(const int n) {
+        auto s = std::to_string(n);
+        auto memo = Array<int, 11, 2, 1025, 2>();
+        fillArray(memo, -1);
 
+        auto dfs = [&](auto &&self, const int i, const bool limit, const int state, const bool dup) -> int {
+            auto &m = memo[i][limit][state][dup];
+            if (m != -1) {
+                return m;
+            }
 
-#[[#ifdef]]# LEETCODE
+            if (i == s.size()) {
+                return dup;
+            }
+            const auto hi = limit ? s[i] - '0' : 9;
+            auto res = 0;
+            for (int d = 0; d <= hi; ++d) {
+                if (state || d) {
+                    res += self(self, i + 1, limit && d == hi, state | (1 << d), dup || (state & (1 << d)));
+                } else {
+                    res += self(self, i + 1, limit && d == hi, 0, false);
+                }
+            }
+
+            return m = res;
+        };
+        return dfs(dfs, 0, true, 0, false);
+    }
+};
+
+#ifdef LEETCODE
 int main() {
+    dbg(Solution().numDupDigitsAtMostN(20));
     return 0;
 }
-#[[#endif]]#
+#endif

@@ -118,46 +118,29 @@ void fillArray(T &arr, const V &val) {
 
 class Solution {
 public:
-    int minimumVisitedCells(const vector<vector<int>> &grid) {
-        const auto m = static_cast<int>(grid.size());
-        const auto n = static_cast<int>(grid[0].size());
-        auto f = 0;
-        auto col_hs = vector<priority_queue_rev<PII>>(n);
-        for (int i = 0; i < m; i++) {
-            auto row_h = priority_queue_rev<PII>();
-            for (int j = 0; j < n; j++) {
-                auto &col_h = col_hs[j];
-
-                f = i || j ? MAX_I : 1;
-
-                while (!row_h.empty() && row_h.top().second < j) {
-                    row_h.pop();
-                }
-                if (!row_h.empty()) {
-                    f = std::min(f, row_h.top().first + 1);
-                }
-
-                while (!col_h.empty() && col_h.top().second < i) {
-                    col_h.pop();
-                }
-                if (!col_h.empty()) {
-                    f = std::min(f, col_h.top().first + 1);
-                }
-
-                const auto g = grid[i][j];
-                if (g && f < MAX_I) {
-                    row_h.emplace(f, g + j);
-                    col_h.emplace(f, g + i);
-                }
+    long long numberOfSubarrays(vector<int> &nums) {
+        const auto n = static_cast<int>(nums.size());
+        auto st = stack<PII>();
+        auto res = 0ll;
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && st.top().first < nums[i]) {
+                st.pop();
+            }
+            if (!st.empty() && st.top().first == nums[i]) {
+                res += st.top().second++;
+            } else {
+                st.emplace(nums[i], 1);
             }
         }
-        return f < MAX_I ? f : -1;
+        return res + n;
     }
 };
 
 #ifdef LOCAL
 int main() {
-
+    auto nums = vector({1, 4, 3, 3, 2});
+    Solution s;
+    dbg(s.numberOfSubarrays(nums));
     return 0;
 }
 #endif

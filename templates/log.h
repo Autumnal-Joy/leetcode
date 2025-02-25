@@ -217,6 +217,7 @@ void print(const std::priority_queue<T, Container, Compare> &x) {
     std::cerr << "}";
 }
 
+#ifdef VERBOSE
 #define dbg(expr...) ([&, __func = __func__] {                          \
     auto &&__tmp = (expr);                                              \
     auto __val = std::forward<decltype(__tmp)>(__tmp);                  \
@@ -225,3 +226,13 @@ void print(const std::priority_queue<T, Container, Compare> &x) {
     std::cerr << endl;                                                  \
     return __val;                                                       \
 }())
+#else
+#define dbg(expr...) ([&, __func = __func__] {         \
+    auto &&__tmp = (expr);                             \
+    auto __val = std::forward<decltype(__tmp)>(__tmp); \
+    std::cerr << "[" << #expr << "] = ";               \
+    print(__val);                                      \
+    std::cerr << endl;                                 \
+    return __val;                                      \
+}())
+#endif

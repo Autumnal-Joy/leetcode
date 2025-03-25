@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define DEBUG
 
 #ifdef LOCAL
 #include "lc_structures.h"

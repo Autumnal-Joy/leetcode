@@ -118,15 +118,31 @@ void fillArray(T &arr, const V &val) {
 
 class Solution {
 public:
-    int minimumSum(int n, int k) {
-        if (n <= k / 2) return (n + 1) * n / 2;
-        return (1 + k / 2) * (k / 2) / 2 + (k + k + n - k / 2 - 1) * (n - k / 2) / 2;
+    long long maximumTripletValue(const vector<int> &nums) {
+        const auto n = static_cast<int>(nums.size());
+        auto diff = vector(n + 1, 0ll);
+        auto mx = MIN_LL;
+        for (int i = 1; i <= n; ++i) {
+            mx = std::max(mx, nums[i - 1] * 1ll);
+            diff[i] = std::max(diff[i - 1], mx - nums[i - 1]);
+        }
+        auto sufMax = vector(n + 1, 0ll);
+        for (int i = n - 1; i >= 0; --i) {
+            sufMax[i] = std::max(sufMax[i + 1], nums[i] * 1ll);
+        }
+        auto res = 0ll;
+        for (int i = 0; i < n; ++i) {
+            res = std::max(res, diff[i] * sufMax[i]);
+        }
+        return res;
     }
 };
 
 #ifdef LOCAL
 int main() {
-
+    auto nums = vector({1, 10, 3, 4, 19});
+    Solution s;
+    s.maximumTripletValue(nums);
     return 0;
 }
 #endif

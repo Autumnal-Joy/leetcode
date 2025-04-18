@@ -117,25 +117,17 @@ void fillArray(T &arr, const V &val) {
 }
 
 class Solution {
-    long long powMod(long long a, long long b, long long mod) {
-        auto res = 1ll;
-        while (b) {
-            if (b & 1) {
-                res = res * a % mod;
-                b -= 1;
-            } else {
-                a = a * a % mod;
-                b /= 2;
-            }
+public:
+    long long countBadPairs(const vector<int> &nums) {
+        const auto n = static_cast<int>(nums.size());
+        auto um = unordered_map<int, long long>();
+        auto res = 0ll;
+        for (int i = 0; i < n; ++i) {
+            const auto key = nums[i] - i;
+            res += i - um[key];
+            ++um[key];
         }
         return res;
-    }
-
-public:
-    int countGoodNumbers(long long n) {
-        const auto odd = n / 2;
-        const auto even = n - odd;
-        return static_cast<int>(powMod(5, even, MOD) * powMod(4, odd, MOD) % MOD);
     }
 };
 

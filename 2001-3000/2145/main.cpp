@@ -118,26 +118,15 @@ void fillArray(T &arr, const V &val) {
 
 class Solution {
 public:
-    long long countSubarrays(vector<int> &nums, int k) {
-        const auto n = static_cast<int>(nums.size());
-        const auto mn = *ranges::max_element(nums);
-
-        auto res = 0ll;
-        auto cnt = 0;
-        for (int left = 0, right = 0; right < n;) {
-            if (nums[right] == mn) {
-                ++cnt;
-            }
-            ++right;
-            while (cnt >= k) {
-                res += n - right + 1;
-                if (nums[left] == mn) {
-                    --cnt;
-                }
-                ++left;
-            }
+    int numberOfArrays(const vector<int> &differences, const int lower, const int upper) {
+        auto mn = 0ll, mx = 0ll;
+        auto s = 0ll;
+        for (auto &v: differences) {
+            s += v;
+            mn = min(mn, s);
+            mx = max(mx, s);
         }
-        return res;
+        return max(0ll, (upper - lower) - (mx - mn) + 1);
     }
 };
 
